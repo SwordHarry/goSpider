@@ -4,6 +4,7 @@ package model
 type Store struct {
 	Name      string
 	FoodName  string
+	ImgUrl    string
 	Cost      int
 	Phone     string
 	Time      string

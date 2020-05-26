@@ -1,8 +1,11 @@
 package parser
 
+// parser: cityList -> city -> food -> store: 职责链模式
+
 import (
 	"../../engine"
 	"fmt"
+	"log"
 	"regexp"
 )
 
@@ -14,14 +17,16 @@ func ParseCityList(contents []byte) engine.ParseResult {
 	result := engine.ParseResult{}
 	for _, m := range matches {
 		url := string(m[1])
-		result.Items = append(result.Items, string(m[2]))
+		city := string(m[2])
+		log.Printf("City: %s", city)
 		result.Requests = append(result.Requests, engine.Request{
 			Url: url,
 			ParserFunc: func(bytes []byte) engine.ParseResult {
-				// cncn.com 中有根据相对定位进行url请求的： /meishi/:foodid 的情况
-				return ParseCity(bytes, url)
+				// cncn.com 中有根据相对定位进行url请求的： /meishi/:foodid 的情况，还要将 city 一层一层传下去
+				return ParseCity(bytes, url, city)
 			},
 		})
+		break
 	}
 	return result
 }

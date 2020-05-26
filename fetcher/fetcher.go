@@ -30,7 +30,7 @@ func customGet(url string) *http.Response {
 	return resp
 }
 
-// 反爬虫限制
+// 反爬虫限制，怕被防爬
 var rateLimiter = time.Tick(100 * time.Millisecond)
 
 func Fetch(url string) ([]byte, error) {
