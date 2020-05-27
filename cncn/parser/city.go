@@ -14,16 +14,22 @@ func ParseCity(contents []byte, urlPrefix string, cityName string) engine.ParseR
 	matches := cityRe.FindAllSubmatch(contents, -1)
 	fmt.Println(len(matches))
 	result := engine.ParseResult{}
+
+	log.Printf("total num of Food: %d", len(matches))
 	for _, m := range matches {
 		name := string(m[2])
 		url := urlPrefix + string(m[1])
 		log.Printf("Food: %s", name)
 		result.Requests = append(result.Requests, engine.Request{
-			Url: url,
-			ParserFunc: func(bytes []byte) engine.ParseResult {
-				return ParseFood(bytes, cityName)
-			},
+			Url:        url,
+			ParserFunc: foodParser(cityName),
 		})
 	}
 	return result
+}
+
+func foodParser(cityName string) engine.ParserFunc {
+	return func(contents []byte, url string) engine.ParseResult {
+		return ParseFood(contents, cityName, url)
+	}
 }

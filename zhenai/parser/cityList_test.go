@@ -1,6 +1,7 @@
 package parser
 
 import (
+	"../../model"
 	"io/ioutil"
 	"testing"
 )
@@ -13,7 +14,7 @@ func TestParseCityList(t *testing.T) {
 
 	//fmt.Printf("%s\n", contents)
 
-	result := ParseCityList(contents)
+	result := ParseCityList(contents, "")
 	// verify result
 	const resultSize = 470
 	expectedUrls := []string{
@@ -31,8 +32,9 @@ func TestParseCityList(t *testing.T) {
 		}
 	}
 	for i, city := range expectedCities {
-		if result.Items[i].(string) != city {
-			t.Errorf("expected city #%d: %s; but was %s", i, city, result.Items[i].(string))
+		hukou := result.Items[i].Payload.(model.Profile).Hukou
+		if hukou != city {
+			t.Errorf("expected city #%d: %s; but was %s", i, city, hukou)
 		}
 	}
 	if len(result.Requests) != resultSize {

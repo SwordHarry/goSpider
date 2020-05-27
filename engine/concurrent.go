@@ -7,7 +7,7 @@ import (
 type ConcurrentEngine struct {
 	Scheduler
 	WorkerCount int
-	ItemChan    chan interface{}
+	ItemChan    chan Item
 }
 
 type Scheduler interface {
@@ -22,14 +22,14 @@ type ReadyNotifier interface {
 	WorkerReady(chan Request)
 }
 
-var urlMap = make(map[string]bool)
+var visitedUrlMap = make(map[string]bool)
 
 // 去重
 func isDuplicate(url string) bool {
-	if urlMap[url] {
+	if visitedUrlMap[url] {
 		return true
 	}
-	urlMap[url] = true
+	visitedUrlMap[url] = true
 	return false
 }
 
@@ -52,11 +52,14 @@ func (e *ConcurrentEngine) Run(seeds ...Request) {
 			log.Printf("# %v Got item: %v", itemCount, item)
 			itemCount++
 			// ATTENTION: 闭包的坑
-			go func(curItem interface{}) { e.ItemChan <- curItem }(item)
+			go func(curItem Item) { e.ItemChan <- curItem }(item)
 		}
 
 		for _, request := range result.Requests {
-			// TODO: isDuplicate(request.Url)
+			// 一次去重
+			if isDuplicate(request.Url) {
+				continue
+			}
 			e.Submit(request)
 		}
 	}

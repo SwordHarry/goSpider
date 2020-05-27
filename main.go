@@ -10,11 +10,18 @@ import (
 const cncn = "https://www.cncn.com/meishi/"
 const zhenai = "http://www.zhenai.com/zhenghun/"
 
+const foodSpiderIndex = "food_around"
+const datingProfile = "dating_profile"
+
 func main() {
+	itemChan, err := persist.ItemSaver(foodSpiderIndex)
+	if err != nil {
+		panic(err)
+	}
 	e := engine.ConcurrentEngine{
 		Scheduler:   &scheduler.QueuedScheduler{},
 		WorkerCount: 10,
-		ItemChan:    persist.ItemSaver(),
+		ItemChan:    itemChan,
 	}
 	e.Run(engine.Request{
 		Url:        cncn,
