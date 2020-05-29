@@ -1,9 +1,9 @@
 package parser
 
 import (
+	"../../../common/engine"
+	"../../../common/model"
 	"../../../crawler_distributed/config"
-	"../../engine"
-	"../../model"
 	"log"
 	"regexp"
 )

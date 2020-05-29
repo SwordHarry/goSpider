@@ -1,7 +1,7 @@
 package parser
 
 import (
-	"../../engine"
+	"../../../common/engine"
 	"log"
 	"regexp"
 )

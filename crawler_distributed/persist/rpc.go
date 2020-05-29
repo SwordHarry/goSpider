@@ -1,8 +1,8 @@
 package persist
 
 import (
-	"../../crawler/engine"
-	"../../crawler/persist"
+	"../../common/engine"
+	"../../common/persist"
 	"gopkg.in/olivere/elastic.v5"
 	"log"
 )

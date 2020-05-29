@@ -3,7 +3,7 @@ package parser
 // parser: cityList -> city -> food -> store: 职责链模式
 
 import (
-	"../../engine"
+	"../../../common/engine"
 	"log"
 	"regexp"
 )

@@ -1,9 +1,8 @@
 package persist
 
 import (
-	"../engine"
-	"context"
-	"github.com/pkg/errors"
+	"../../common/engine"
+	"../../common/persist"
 	"gopkg.in/olivere/elastic.v5"
 	"log"
 )
@@ -23,7 +22,7 @@ func ItemSaver(index string) (chan engine.Item, error) {
 			item := <-out
 			log.Printf("Item Saver: got item %d: %v", itemCount, item)
 			itemCount++
-			err := Save(client, item, index)
+			err := persist.Save(client, item, index)
 			if err != nil {
 				log.Printf("Item Saver: error saving item %v: %v", item, err)
 				continue
@@ -31,27 +30,4 @@ func ItemSaver(index string) (chan engine.Item, error) {
 		}
 	}()
 	return out, nil
-}
-
-func Save(client *elastic.Client, item engine.Item, index string) error {
-
-	if item.Type == "" {
-		return errors.New("Must supply Type")
-	}
-
-	indexService := client.Index().
-		Index(index).
-		Type(item.Type).
-		BodyJson(item)
-	if item.Id != "" {
-		indexService.Id(item.Id)
-	}
-	_, err := indexService.
-		Do(context.Background())
-
-	if err != nil {
-		return err
-	}
-
-	return nil
 }

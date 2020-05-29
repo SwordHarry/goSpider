@@ -1,8 +1,8 @@
 package view
 
 import (
-	"../../engine"
-	itemModel "../../model"
+	"../../../common/engine"
+	itemModel "../../../common/model"
 	"../model"
 	"os"
 	"testing"

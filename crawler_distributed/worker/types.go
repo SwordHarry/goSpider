@@ -2,10 +2,10 @@ package worker
 
 // 序列化与反序列化层：把 engine 的引擎的 Request 、 ParseResult 和 rpc 层的 Request 、 ParseResult 相互转换
 import (
-	cncnParser "../../crawler/cncn/parser"
-	"../../crawler/engine"
-	gushiwenParser "../../crawler/gushiwen/parser"
-	maoyanParser "../../crawler/maoyan/parser"
+	cncnParser "../../business/cncn/parser"
+	gushiwenParser "../../business/gushiwen/parser"
+	maoyanParser "../../business/maoyan/parser"
+	"../../common/engine"
 	"../config"
 	"fmt"
 	"github.com/pkg/errors"

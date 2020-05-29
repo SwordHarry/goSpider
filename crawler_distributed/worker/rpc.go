@@ -1,6 +1,6 @@
 package worker
 
-import "../../crawler/engine"
+import "../../common/engine"
 
 type CrawlService struct {
 }

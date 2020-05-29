@@ -1,8 +1,8 @@
 package persist
 
 import (
-	"../engine"
-	"../model"
+	"../../common/engine"
+	"../../common/model"
 	"context"
 	"encoding/json"
 	"fmt"

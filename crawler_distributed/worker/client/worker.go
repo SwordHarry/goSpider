@@ -1,7 +1,7 @@
 package client
 
 import (
-	"../../../crawler/engine"
+	"../../../common/engine"
 	"../../config"
 	"../../worker"
 	"net/rpc"

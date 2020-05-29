@@ -1,9 +1,9 @@
 package main
 
 import (
-	"../crawler/engine"
-	"../crawler/gushiwen/parser"
-	"../crawler/scheduler"
+	"../business/gushiwen/parser"
+	"../common/engine"
+	"../common/scheduler"
 	"./config"
 	itemSaver "./persist/client"
 	"./rpcsupport"

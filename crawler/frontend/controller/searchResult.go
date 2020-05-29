@@ -1,7 +1,7 @@
 package controller
 
 import (
-	"../../engine"
+	"../../../common/engine"
 	"../model"
 	"../view"
 	"context"

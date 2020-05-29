@@ -1,11 +1,11 @@
 package main
 
 import (
+	"../business/gushiwen/parser"
+	"../common/engine"
+	"../common/scheduler"
 	"../crawler_distributed/config"
-	"./engine"
-	"./gushiwen/parser"
 	"./persist"
-	"./scheduler"
 )
 
 const gushiwen = "https://www.gushiwen.org/"

@@ -1,7 +1,7 @@
 package parser
 
 import (
-	"../../model"
+	"../../../common/model"
 	"io/ioutil"
 	"testing"
 )

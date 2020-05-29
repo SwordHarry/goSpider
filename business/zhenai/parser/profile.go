@@ -1,8 +1,8 @@
 package parser
 
 import (
-	"../../engine"
-	"../../model"
+	"../../../common/engine"
+	"../../../common/model"
 	"regexp"
 	"strconv"
 )

@@ -1,8 +1,8 @@
 package main
 
 import (
-	"../../../crawler/engine"
-	"../../../crawler/model"
+	"../../../common/engine"
+	"../../../common/model"
 	"../../config"
 	"../../rpcsupport"
 	"testing"
